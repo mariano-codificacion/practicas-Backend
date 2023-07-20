@@ -11,7 +11,15 @@ getProducts = () => {
     }
 
 addProduct = (title, description, price, thumbnail, code, stock) => {
-    const product = {
+   
+    if (!title || !description || !price || !thumbnail || !code || !stock) {
+        console.log ("Por favor complete todos los campos");
+    } 
+    this.products.forEach (product => {
+    if (product.code === code){
+    console.log("el code ingresado ya existe");
+    }})
+     const product = {
         title,
         description,
         price,
@@ -19,10 +27,6 @@ addProduct = (title, description, price, thumbnail, code, stock) => {
         code, 
         stock
     }
-    this.products.forEach (product => {
-    if (product.code === code){
-    console.log("el code ingresado ya existe");
-    }})
     if (this.products.length===0){
         product.id=1;
     }else {
