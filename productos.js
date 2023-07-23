@@ -8,17 +8,20 @@ class ProductManager {
     }
 
     addProduct = (title, description, price, thumbnail, code, stock) => {
-
-        if (!title || !description || !price || !thumbnail || !code || !stock) {
-            console.log("Por favor complete todos los campos");
-        }
+        let codigo;
         this.products.forEach(product => {
-
             if (product.code === code) {
-                console.error("el code ingresado ya existe");
+                console.log("el code ingresado ya existe");
+                codigo=0;
+                return codigo
             }
         })
-
+        if (codigo==0)
+        {return}
+        if (!title || !description || !price || !thumbnail || !code || !stock) {
+            console.log("Por favor complete todos los campos");
+            return;
+        }else{
         const product = {
             title,
             description,
@@ -35,6 +38,7 @@ class ProductManager {
         }
         this.products.push(product);
     }
+}
     getProductById = (id) => {
         const buscado = this.products.find(item => item.id === id);
         if (buscado === undefined) {
@@ -48,7 +52,7 @@ const productos = new ProductManager;
 productos.getProducts();
 productos.addProduct("producto prueba", "Este es un producto prueba", 200, "Sin imagen", "abc123", 25);
 productos.getProducts();
-productos.addProduct("producto prueba", "Este es un producto prueba", 300, "Sin imagen", "abc123", 25);
-productos.getProductById(1)
-//productos.addProduct("producto prueba", "Este es un producto prueba", 200, "Sin imagen", "abc124", 25);
-productos.getProductById(2)
+productos.addProduct("producto prueba", "Este es un producto prueba", 300, "Sin imagen", "abc124", 20);
+productos.getProductById(2);
+productos.addProduct("producto prueba", "Este es un producto prueba", 400, "Sin imagen", "abc124", 25);
+productos.getProductById(3)
